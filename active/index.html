@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body style="font-size: 1.3em;">
+   <div id="particles-js"></div>
+    <div class="home-content">
+        <h3 class="animate-character">Eclipse</h3>
+        <div class="home-other-stuff">
+        <nav>
+         <div class="nav-content">
+           <a href="/">Home</a>
+           <a href="/">Games</a>
+           <a href="/">Apps</a>
+           <a href="/">Discord</a>
+         </div>
+       </nav>
+        <form id="uv-form">
+            <input id="uv-search-engine"
+            value="https://duckduckgo.com/?q=%s"
+            type="hidden"/> 
+            <input id="uv-address" type="text" placeholder="Search Google or type a URL" class="form__input"/>
+          </form>
+    </div>
+   </div>
+</body>
+<script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
+   new Crate({
+       server: '1340889775686553672', // Eclipse Network
+       channel: '1340889776437596192' // #💬〔general〕
+   })
+</script>
+<script src="uv/uv.bundle.js" charset="UTF-8" defer></script>
+<script src="uv/uv.config.js" charset="UTF-8" defer></script>
+<script src="register-sw.js" charset="UTF-8" defer></script>
+<script src="search.js" charset="UTF-8" defer></script>
+<script src="index.js" charset="UTF-8" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0"></script>
+<script src="particles.js"></script>
+</html>
