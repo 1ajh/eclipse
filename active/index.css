@@ -96,3 +96,11 @@ nav a:hover {
 .home-other-stuff {
   transform: translateY(-10em);
 }
+
+.sidenav {
+  display: flex;
+  flex-direction: row;
+}
+.sidenav a, .sidenav h3 {
+  margin-right: 0.5em;
+}

@@ -25,25 +25,30 @@
           margin-top: 20px;
         }
         .game-link {
-          height: 400px;
-          width: 300px;
+          width: 250px;
           text-decoration: none;
+          margin-bottom: 2em;
         }
         .game-tile {
-          background-color: #949494;
-          height: 10em;
-          width: 10em;
+          background-color: transparent;
+          height: auto;
+          width: auto;
+          text-align: center;
           border-radius: 2em;
         }
         .game-icon {
-          border-radius: 2em;;
+          border-radius: 2em;
           width: 10em;
           height: 10em;
+          transition: 0.3s;
+        }
+        .game-icon:hover {
+          transform: scale(110%);
         }
         .game-title {
-          font-size: 1em;
+          font-size: 1.1em;
           font-weight: bold;
-          color: #000000;
+          color: #ffffff;
           text-align: center;
           margin: auto;
         }
@@ -55,9 +60,8 @@
           flex-wrap: wrap;
           align-items: center;
           justify-content: center;
-          width: 50vw;
+          width: 100%;
           height: 100%;
-          margin-left: 25vw;
         }
         @keyframes spin {
           0% {
@@ -68,22 +72,27 @@
           }
         }
         #search {
-            margin-left: 40vw !important;
+            background: transparent;
+            border: solid 5px rgba(112, 126, 158, 0.144);
+            padding: 0.5em;
+            font-size: 1.2em;
+            width: 20%;
+            color: #fff;
         }
       </style>
 </head>
 <body style="font-size: 1.3em;">
    <div id="particles-js"></div>
-        <nav>
-            <div class="nav-content">
-            <h3>Eclipse - Games</h3>
+        <nav style="width: auto;">
+            <div class="nav-content sidenav">
+            <h3>Eclipse</h3>
               <a href="/">Home</a>
               <a href="/">Games</a>
               <a href="/">Apps</a>
               <a href="/">Discord</a>
+              <input type="text" id="search" onkeyup="searchGames()" placeholder="Search for games..."/>
             </div>
           </nav>
-        <input type="text" id="search" onkeyup="searchGames()" placeholder="Search for games..." style="width: 100%; font-size: 18px; padding: 6px 20px; margin: auto; border-radius: 30px; max-width: 600px; margin-bottom: 10px;" />
         <div id="loader" style="display: block; border: 16px solid #f3f3f3; border-top: 16px solid #3498db; border-radius: 50%; width: 120px; height: 120px; animation: spin 0.3s linear infinite; margin: auto; margin-top: 1rem;"></div>
         <div id="game-container" class="flex-container"></div>
         <p class="text-center">
