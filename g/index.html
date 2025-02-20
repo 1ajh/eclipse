@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse</title>
+    <link rel="stylesheet" href="/active/index.css">
+    <style>
+        p {
+          text-align: center;
+          max-width: 600px;
+          margin: 20px auto;
+        }
+        button {
+          cursor: pointer;
+          background-color: #22c55e;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          border-radius: 20px;
+          margin-top: 20px;
+        }
+        .game-link {
+          height: 400px;
+          width: 300px;
+          text-decoration: none;
+        }
+        .game-tile {
+          background-color: #949494;
+          height: 10em;
+          width: 10em;
+          border-radius: 2em;
+        }
+        .game-icon {
+          border-radius: 2em;;
+          width: 10em;
+          height: 10em;
+        }
+        .game-title {
+          font-size: 1em;
+          font-weight: bold;
+          color: #000000;
+          text-align: center;
+          margin: auto;
+        }
+        .flex-container {
+          display: flex;
+          flex-direction: row;
+          order: 0;
+          flex-grow: 0;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          width: 50vw;
+          height: 100%;
+          margin-left: 25vw;
+        }
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        #search {
+            margin-left: 40vw !important;
+        }
+      </style>
+</head>
+<body style="font-size: 1.3em;">
+   <div id="particles-js"></div>
+        <nav>
+            <div class="nav-content">
+            <h3>Eclipse - Games</h3>
+              <a href="/">Home</a>
+              <a href="/">Games</a>
+              <a href="/">Apps</a>
+              <a href="/">Discord</a>
+            </div>
+          </nav>
+        <input type="text" id="search" onkeyup="searchGames()" placeholder="Search for games..." style="width: 100%; font-size: 18px; padding: 6px 20px; margin: auto; border-radius: 30px; max-width: 600px; margin-bottom: 10px;" />
+        <div id="loader" style="display: block; border: 16px solid #f3f3f3; border-top: 16px solid #3498db; border-radius: 50%; width: 120px; height: 120px; animation: spin 0.3s linear infinite; margin: auto; margin-top: 1rem;"></div>
+        <div id="game-container" class="flex-container"></div>
+        <p class="text-center">
+          <a href="/index.html" style="text-decoration: none;">
+          </a>
+    </div>
+</body>
+<script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
+   new Crate({
+       server: '1340889775686553672', // Eclipse Network
+       channel: '1340889776437596192' // #💬〔general〕
+   })
+</script>
+<script src="uv/uv.bundle.js" charset="UTF-8" defer></script>
+<script src="uv/uv.config.js" charset="UTF-8" defer></script>
+<script src="register-sw.js" charset="UTF-8" defer></script>
+<script src="search.js" charset="UTF-8" defer></script>
+<script src="index.js" charset="UTF-8" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0"></script>
+<script src="particles.js"></script>
+</html>
+<script>
+    let games = [];
+    fetch("g.json")
+    .then((response) => response.json())
+    .then((data) => {
+      games = data;
+      const container = document.getElementById("game-container");
+      data.forEach((project) => {
+        const game = document.createElement("a");
+        game.href = project.link;
+          game.className = "game-link container";
+          game.innerHTML = `
+          <div class="game-tile">
+            <img class="game-icon" src="${project.imgSrc}" alt="icon" />
+            <p class="game-title">${project.title}</p>
+            </div>`;
+            container.appendChild(game);
+        });
+        document.getElementById("loader").style.display = "none";
+      })
+      .catch((error) => console.error("Error:", error));
+
+    function searchGames() {
+      const input = document.getElementById("search");
+      const filter = input.value.toUpperCase();
+      const container = document.getElementById("game-container");
+      container.innerHTML = "";
+      games
+        .filter((game) => game.title.toUpperCase().includes(filter))
+        .forEach((project) => {
+          const game = document.createElement("a");
+          game.href = project.link;
+          game.className = "game-link container";
+          game.innerHTML = `
+          <div class="game-tile">
+            <img class="game-icon" src="${project.imgSrc}" alt="icon" loading="lazy" />
+            <p class="game-title">${project.title}</p>
+            </div>`;
+          container.appendChild(game);
+        });
+      }
+  </script>
